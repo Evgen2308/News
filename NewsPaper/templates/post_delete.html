@@ -1,0 +1,16 @@
+{% extends 'flatpages/default.html' %}
+
+{% load cache %}
+{% cache 60 menu sidebar %}
+{% endcache %}
+
+{% block content %}
+{% include 'input_output.html' %}
+<h1>Удаление публикации № {{ object.id }}</h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Удаляется {{ object.get_post_type_display }}: "{{ object.post_title }}"</p>
+    <input type="submit" value="Подтвердить удаление"/>
+</form>
+{% endblock content %}

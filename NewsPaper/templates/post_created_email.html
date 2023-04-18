@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новая публикация</title>
+</head>
+<body>
+<h2>Отличные новости! Появилась свежая <a href="{{ link }}">публикация</a> в категории, на которую вы подписались!</h2>
+<p><i>"{{ text }}"</i></p>
+</body>
+</html>
+{% load cache %}
+{% cache 60 menu sidebar %}
+{% endcache %}

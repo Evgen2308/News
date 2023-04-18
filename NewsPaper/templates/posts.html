@@ -1,0 +1,83 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+{% load custom_tags %}
+
+{% load cache %}
+{% cache 60 menu sidebar %}
+{% endcache %}
+
+{% block title %}
+Publications
+{% endblock title %}
+
+{% block content %}
+{% include 'input_output.html' %}
+<h1>Всего публикаций: {{ page_obj.paginator.count }}</h1>
+<!--<h3>{% current_time '%d %b %Y' %}</h3>-->
+<!--<h3> {{ next_sale|default_if_none:"Портал в стадии разработки!" }} </h3>-->
+&nbsp;
+{% if posts %}
+<table style="border: 1px solid #afabab;">
+    <tr style="border: 1px solid #afabab;">
+        <td style="border: 1px solid #afabab;">&nbsp; ID &nbsp;</td>
+        <td style="border: 1px solid #afabab;">Заголовок</td>
+        <td style="border: 1px solid #afabab;">Дата публикации</td>
+        <td style="border: 1px solid #afabab;">Автор публикации</td>
+        <td style="border: 1px solid #afabab;">Тип публикации</td>
+        <td style="border: 1px solid #afabab;">Категории</td>
+        <td style="border: 1px solid #afabab;">Текст</td>
+    </tr>
+    {% for post in posts %}
+    <tr style="border: 1px solid #afabab;">
+        <td style="border: 1px solid #afabab;">{{ post.pk }}</td>
+        <td style="border: 1px solid #afabab;">
+            <a href="{% url 'post_detail' post.pk %}">{{ post.post_title|censor }}</a>
+            <br>
+            {% if post.post_type == 'NW' %}
+            {% if post.author == request.user.author %}
+            <a href="{% url 'post_edit' post.id %}"><span style="color: brown; "><font size="2">редактировать</font></span></a>
+            &nbsp;&nbsp;
+            <a href="{% url 'post_delete' post.id %}"><span style="color: red; "><font size="2">удалить</font></span></a>
+            {% endif %}
+            {% else %}
+            {% if post.author == request.user.author %}
+            <a href="{% url 'articles_edit' post.id %}"><span style="color: brown; "><font size="2">редактировать</font></span></a>
+            &nbsp;&nbsp;
+            <a href="{% url 'articles_delete' post.id %}"><span style="color: red; "><font size="2">удалить</font></span></a>
+            {% endif %}
+            {% endif %}
+        </td>
+        <td style="border: 1px solid #afabab;">{{ post.date_creation }}</td>
+        <td style="border: 1px solid #afabab;"><a href="{% url 'author_list' post.author.id %}">{{ post.author }}</a>
+        </td>
+        <td style="border: 1px solid #afabab;"><a href="{% url 'type_list' post.post_type %}">{{ post.get_post_type_display }}</a></td>
+        <td style="border: 1px solid #afabab;">
+            {% for category in post.post_category.all %}
+            <a href="{% url 'category_list' category.id %}">{{ category }}</a>
+            {% endfor %}
+        </td>
+        <td style="border: 1px solid #afabab;">{{ post.post_text|truncatewords:20|censor }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h2>Публикаций нет!</h2>
+{% endif %}
+{% if page_obj.has_previous %}
+<a href="?page=1">1</a>
+{% if page_obj.previous_page_number != 1 %}
+...
+<a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+{% endif %}
+{% endif %}
+
+{{ page_obj.number }}
+
+{% if page_obj.has_next %}
+<a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+{% if paginator.num_pages != page_obj.next_page_number %}
+...
+<a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+{% endif %}
+{% endif %}
+{% endblock content %}

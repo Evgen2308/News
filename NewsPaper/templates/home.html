@@ -1,0 +1,15 @@
+{% extends 'flatpages/default.html' %}
+{% block title %}
+Домашняя страница
+{% endblock title %}
+
+{% load cache %}
+{% cache 60 menu sidebar %}
+{% endcache %}
+
+{% block content %}
+{% include 'input_output.html' %}
+<h1><i>Вас приветствует новостной портал!</i></h1>
+<img src="https://lms.skillfactory.ru/assets/courseware/v1/6dd783a5caf346ea6b025a4db2de76df/asset-v1:SkillFactory+PDEV+2021+type@asset+block/FPW_D.2_project.svg"
+     width="800" height="800">
+{% endblock content %}

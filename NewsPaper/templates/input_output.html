@@ -1,0 +1,14 @@
+<table width="100%" border="0">
+    <tr>
+        <td align="right">
+            {% if request.user.username %}
+            <p>Пользователь: <span style="color: orangered; ">{{ request.user.username }}</span>&nbsp|&nbsp<a href="/logout/">Выйти</a>
+                {% else %}
+                <a href="/accounts/login">Войти</a>&nbsp|&nbsp<a href="/accounts/signup">Регистрация</a>
+                {% endif %}
+        </td>
+    </tr>
+</table>
+{% load cache %}
+{% cache 60 menu sidebar %}
+{% endcache %}

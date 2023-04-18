@@ -1,0 +1,56 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+{% load custom_tags %}
+
+{% load cache %}
+{% cache 60 menu sidebar %}
+{% endcache %}
+
+{% block title %}
+Publication
+{% endblock title %}
+
+{% block content %}
+{% include 'input_output.html' %}
+<h3>Публикация № {{ post.pk }}</h3>
+<h3>{% current_time '%d %b %Y' %}</h3>
+
+<table style="border: 1px solid #afabab;">
+    <tr style="border: 1px solid #afabab;">
+        <td style="border: 1px solid #afabab;">&nbsp; ID &nbsp;</td>
+        <td style="border: 1px solid #afabab;">Заголовок</td>
+        <td style="border: 1px solid #afabab;">Дата публикации</td>
+        <td style="border: 1px solid #afabab;">Автор публикации</td>
+        <td style="border: 1px solid #afabab;">Тип публикации</td>
+        <td style="border: 1px solid #afabab;">Категории</td>
+        <td style="border: 1px solid #afabab;">Текст</td>
+    </tr>
+    <tr style="border: 1px solid #afabab;">
+        <td style="border: 1px solid #afabab;">{{ post.pk }}</td>
+        <td style="border: 1px solid #afabab;">{{ post.post_title|censor }}
+            <br>
+            {% if post.post_type == 'NW' %}
+            {% if post.author == request.user.author %}
+            <a href="{% url 'post_edit' post.id %}"><span style="color: brown; "><font size="2">редактировать</font></span></a>
+            &nbsp;&nbsp;
+            <a href="{% url 'post_delete' post.id %}"><span style="color: red; "><font size="2">удалить</font></span></a>
+            {% endif %}
+            {% else %}
+            {% if post.author == request.user.author %}
+            <a href="{% url 'articles_edit' post.id %}"><span style="color: brown; "><font size="2">редактировать</font></span></a>
+
+            <a href="{% url 'articles_delete' post.id %}"><span style="color: red; "><font size="2">удалить</font></span></a>
+            {% endif %}
+        </td>
+        <td style="border: 1px solid #afabab;">{{ post.date_creation }}</td>
+        <td style="border: 1px solid #afabab;"><a href="{% url 'author_list' post.author.id %}">{{ post.author }}</a></td>
+        <td style="border: 1px solid #afabab;"><a href="{% url 'type_list' post.post_type %}">{{ post.get_post_type_display }}</a></td>
+        <td style="border: 1px solid #afabab;">
+            {% for category in post.post_category.all %}
+            <a href="{% url 'category_list' category.id %}">{{ category }}</a>
+            {% endfor %}
+        </td>
+        <td style="border: 1px solid #afabab;">{{ post.post_text|censor }}</td>
+    </tr>
+</table>
+{% endblock content %}

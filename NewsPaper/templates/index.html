@@ -1,0 +1,20 @@
+{% extends "flatpages/default.html" %}
+
+{% load cache %}
+{% cache 60 menu sidebar %}
+{% endcache %}
+
+{% block content %}
+<br>
+{% include 'input_output.html' %}
+<br>
+<h2>Страница авторизованного пользователя <span style="color: orangered; ">{{ request.user.username }}</span></h2>
+<br>
+<div> Здесь может содержаться персональная информация для каждого пользователя</div>
+<br>
+{% if is_not_author %}
+<a href="upgrade/"> Хочу быть автором!</a>
+{% endif %}
+
+<!--<a href="logout/">Выйти</a>-->
+{% endblock %}
