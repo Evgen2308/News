@@ -191,3 +191,90 @@ CACHES = {
         'TIMEOUT': 60,
     }
 }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        "for_debug_and_above": { # Для DEBUG и выше
+            'format': '%(asctime)s %(levelname)s %(message)s',
+            'style': '{',
+        },
+        "for_warning_and_above":{# Для Warning и выше
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s',
+            'style':"{",
+        },
+        "for_critical_and_above":{# Для critical и выше
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s %(exc_info)s',
+            'style': '{',
+        },
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'console': { # стандартный хендлер
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'for_debug_and_above'
+        },
+        'mail_admins': { # хендлер для отправки по email
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True
+        },
+        'for_general':{ # для печати в файл general.log
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'for_debug_and_above',
+            'filename': 'general.log',
+        },
+        'for_errors':{# для печати в файл errors.log
+            'level':'ERROR',
+            'class': 'logging.FileHandler',
+            'formatter': 'for_critical_and_above',
+            'filename': 'errors.log',
+        },
+        'for_security':{# для печати в файл security.log
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'for_warning_and_above',
+            'filename': 'security.log',
+        },
+    },
+    'loggers': {
+        'django': { # стандартный логгер
+            'handlers': ['console', 'for_general'],
+            'propagate': True,
+        },
+            'django.request': { # request логгер
+            'handlers': ['for_errors', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django.server': { # server логгер
+            'handlers': ['for_errors', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django.template': { # template логгер
+            'handlers': ['for_errors'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django.db.backends': { # db.beckends логгер
+            'handlers': ['for_errors'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django.security': { # security логгер
+            'handlers': ['for_security'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    }
+}
