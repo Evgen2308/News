@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 
     # 'django.middleware.cache.UpdateCacheMiddleware',
     # 'django.middleware.common.CommonMiddleware',
@@ -177,7 +178,6 @@ SERVER_EMAIL = 'evgen23strelnikov@yandex.com'
 # APSCHEDULER_RUN_NOW_TIMEOUT = 25
 
 
-
 CELERY_BROKER_URL = 'redis://default:FTl3bCOi0CAwZgnIQqPwXXkByJYWtbDo@redis-19960.c11.us-east-1-2.ec2.cloud.redislabs.com:19960'
 CELERY_RESULT_BACKEND = 'redis://default:FTl3bCOi0CAwZgnIQqPwXXkByJYWtbDo@redis-19960.c11.us-east-1-2.ec2.cloud.redislabs.com:19960'
 CELERY_ACCEPT_CONTENT = ['application/json']
@@ -197,15 +197,15 @@ LOGGING = {
     'disable_existing_loggers': False,
 
     'formatters': {
-        "for_debug_and_above": { # Для DEBUG и выше
+        "for_debug_and_above": {
             'format': '%(asctime)s %(levelname)s %(message)s',
             'style': '{',
         },
-        "for_warning_and_above":{# Для Warning и выше
+        "for_warning_and_above": {
             'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s',
-            'style':"{",
+            'style': "{",
         },
-        "for_critical_and_above":{# Для critical и выше
+        "for_critical_and_above": {
             'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s %(exc_info)s',
             'style': '{',
         },
@@ -216,30 +216,30 @@ LOGGING = {
         },
     },
     'handlers': {
-        'console': { # стандартный хендлер
+        'console': {
             'level': 'INFO',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'for_debug_and_above'
         },
-        'mail_admins': { # хендлер для отправки по email
+        'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
             'include_html': True
         },
-        'for_general':{ # для печати в файл general.log
+        'for_general': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'formatter': 'for_debug_and_above',
             'filename': 'general.log',
         },
-        'for_errors':{# для печати в файл errors.log
-            'level':'ERROR',
+        'for_errors': {
+            'level': 'ERROR',
             'class': 'logging.FileHandler',
             'formatter': 'for_critical_and_above',
             'filename': 'errors.log',
         },
-        'for_security':{# для печати в файл security.log
+        'for_security': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'formatter': 'for_warning_and_above',
@@ -247,34 +247,38 @@ LOGGING = {
         },
     },
     'loggers': {
-        'django': { # стандартный логгер
+        'django': {
             'handlers': ['console', 'for_general'],
             'propagate': True,
         },
-            'django.request': { # request логгер
+        'django.request': {
             'handlers': ['for_errors', 'mail_admins'],
             'level': 'ERROR',
             'propagate': True,
         },
-        'django.server': { # server логгер
+        'django.server': {
             'handlers': ['for_errors', 'mail_admins'],
             'level': 'ERROR',
             'propagate': True,
         },
-        'django.template': { # template логгер
+        'django.template': {
             'handlers': ['for_errors'],
             'level': 'ERROR',
             'propagate': True,
         },
-        'django.db.backends': { # db.beckends логгер
+        'django.db.backends': {
             'handlers': ['for_errors'],
             'level': 'ERROR',
             'propagate': True,
         },
-        'django.security': { # security логгер
+        'django.security': {
             'handlers': ['for_security'],
             'level': 'INFO',
             'propagate': True,
         },
     }
 }
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]

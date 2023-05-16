@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .filters import PostFilter
@@ -10,6 +12,7 @@ from .tasks import send_email_task
 
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache
+from django.utils.translation import gettext as _
 
 @cache_page(100)
 def home(request):
@@ -193,3 +196,10 @@ class PostTypeListView(ListView):
             return 'NW', 'новостей'
         elif path_type == '/news/type/AR':
             return 'AR', 'статей'
+
+
+class Index(View):
+    def get(self, request):
+        string = _('Hello world')
+
+        return HttpResponse(string)
