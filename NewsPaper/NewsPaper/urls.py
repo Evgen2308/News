@@ -18,6 +18,7 @@ from django.urls import path, include
 
 from news_portal import views
 
+
 urlpatterns = [
     path('home/', views.home),
     path('admin/', admin.site.urls),

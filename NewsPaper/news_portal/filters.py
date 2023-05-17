@@ -3,6 +3,7 @@ from .models import Author
 from django import forms
 
 
+
 class PostFilter(FilterSet):
     search_title = CharFilter(
         field_name='post_title',

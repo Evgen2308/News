@@ -105,3 +105,25 @@ Traceback (most recent call last):
     super().__init__(kwargs)
 TypeError: __init__() takes 1 positional argument but 2 were given
 2023-05-17 15:17:50,510 ERROR "GET /news/search/ HTTP/1.1" 500 71785
+2023-05-17 15:31:52,263 INFO C:\Users\User\PycharmProjects\News_Portal\NewsPaper\news_portal\filters.py changed, reloading.
+2023-05-17 15:31:54,618 INFO Watching for file changes with StatReloader
+2023-05-17 16:16:59,221 INFO Watching for file changes with StatReloader
+2023-05-17 16:17:18,944 ERROR Internal Server Error: /news/search/
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\views\generic\base.py", line 96, in view
+    self = cls(**initkwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\NewsPaper\news_portal\views.py", line 58, in __init__
+    super().__init__(kwargs)
+TypeError: __init__() takes 1 positional argument but 2 were given
+2023-05-17 16:17:20,799 ERROR "GET /news/search/ HTTP/1.1" 500 71785
+2023-05-17 16:26:39,069 INFO Watching for file changes with StatReloader
+2023-05-17 16:41:17,201 INFO Watching for file changes with StatReloader
+2023-05-17 16:49:13,079 INFO Watching for file changes with StatReloader
+2023-05-17 16:56:16,937 INFO Watching for file changes with StatReloader
+2023-05-17 17:01:14,068 INFO Watching for file changes with StatReloader
+2023-05-17 17:20:39,874 INFO C:\Users\User\PycharmProjects\News_Portal\venv\Lib\site-packages\django\contrib\__init__.py changed, reloading.
+2023-05-17 17:20:41,364 INFO Watching for file changes with StatReloader
