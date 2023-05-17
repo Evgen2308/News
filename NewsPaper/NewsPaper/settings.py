@@ -11,9 +11,20 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+import logging.config
+# from django.conf import settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+LOG_DIR = os.path.join(BASE_DIR, 'logs')
+if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR)
+
+logger = logging.getLogger('NewsPaper.news.NewsPaper')
+
+# Создаем файл журнала ошибок
+# ERROR_LOG_FILE = os.path.join(LOG_DIR, 'errors.log')
+# open(ERROR_LOG_FILE, 'a').close()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -29,6 +40,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    # 'modeltranslation',  # обязательно писть перед админом
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +57,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'django_apscheduler',
 ]
 
 SITE_ID = 1
@@ -52,13 +65,14 @@ SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    # 'basic.middlewares.TimezoneMiddleware',
 
     # 'django.middleware.cache.UpdateCacheMiddleware',
     # 'django.middleware.common.CommonMiddleware',
@@ -122,7 +136,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = [
+#     ('en-us', 'English'),
+#     ('ru', 'Русский')
+# ]
+
+LANGUAGE_CODE = 'ru'
+
+LANGUAGES = [
+    ('en-us', 'English'),
+    ('ru', 'Русский')
+]
 
 TIME_ZONE = 'UTC'
 
@@ -199,15 +223,12 @@ LOGGING = {
     'formatters': {
         "for_debug_and_above": {
             'format': '%(asctime)s %(levelname)s %(message)s',
-            'style': '{',
         },
         "for_warning_and_above": {
             'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s',
-            'style': "{",
         },
         "for_critical_and_above": {
             'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s %(exc_info)s',
-            'style': '{',
         },
     },
     'filters': {
@@ -278,6 +299,8 @@ LOGGING = {
         },
     }
 }
+
+logging.config.dictConfig(LOGGING)
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')

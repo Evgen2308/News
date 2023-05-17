@@ -1,0 +1,80 @@
+2023-05-16 15:03:19,390 ERROR Internal Server Error: /accounts/signup/ C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\log.py (<class 'django.contrib.auth.models.Group.DoesNotExist'>, DoesNotExist('Group matching query does not exist.'), <traceback object at 0x0000025CD533C0C0>)
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\decorators.py", line 20, in wrap
+    resp = function(request, *args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\views\decorators\debug.py", line 92, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\account\views.py", line 234, in dispatch
+    return super(SignupView, self).dispatch(request, *args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\account\views.py", line 77, in dispatch
+    response = super(RedirectAuthenticatedUserMixin, self).dispatch(
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\account\views.py", line 207, in dispatch
+    return super(CloseableSignupMixin, self).dispatch(request, *args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\account\views.py", line 105, in post
+    response = self.form_valid(form)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\account\views.py", line 248, in form_valid
+    self.user = form.save(self.request)
+  File "C:\Users\User\PycharmProjects\News_Portal\NewsPaper\accounts\models.py", line 25, in save
+    common_group = Group.objects.get(name='common')
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\query.py", line 650, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.Group.DoesNotExist: Group matching query does not exist.
+2023-05-16 15:03:20,631 ERROR "POST /accounts/signup/ HTTP/1.1" 500 130365 C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-16 15:05:45,049 ERROR Internal Server Error: /upgrade/ C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\log.py (<class 'django.contrib.auth.models.Group.DoesNotExist'>, DoesNotExist('Group matching query does not exist.'), <traceback object at 0x0000025CD4FACE00>)
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\NewsPaper\accounts\views.py", line 28, in upgrade_me
+    authors_group = Group.objects.get(name='authors')
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\query.py", line 650, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.Group.DoesNotExist: Group matching query does not exist.
+2023-05-16 15:05:46,337 ERROR "GET /upgrade/ HTTP/1.1" 500 83996 C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-17 15:17:26,095 ERROR Internal Server Error: /upgrade/ C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\log.py (<class 'django.contrib.auth.models.Group.DoesNotExist'>, DoesNotExist('Group matching query does not exist.'), <traceback object at 0x00000241D28A3100>)
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\NewsPaper\accounts\views.py", line 28, in upgrade_me
+    authors_group = Group.objects.get(name='authors')
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\query.py", line 650, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.Group.DoesNotExist: Group matching query does not exist.
+2023-05-17 15:17:28,219 ERROR "GET /upgrade/ HTTP/1.1" 500 80236 C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-17 15:17:49,387 ERROR Internal Server Error: /news/search/ C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\log.py (<class 'TypeError'>, TypeError('__init__() takes 1 positional argument but 2 were given'), <traceback object at 0x00000241D28C72C0>)
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\views\generic\base.py", line 96, in view
+    self = cls(**initkwargs)
+  File "C:\Users\User\PycharmProjects\News_Portal\NewsPaper\news_portal\views.py", line 58, in __init__
+    super().__init__(kwargs)
+TypeError: __init__() takes 1 positional argument but 2 were given
+2023-05-17 15:17:50,510 ERROR "GET /news/search/ HTTP/1.1" 500 71785 C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\servers\basehttp.py None

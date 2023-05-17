@@ -25,6 +25,7 @@ class Author(models.Model):
 
 
 class Category(models.Model):
+    objects = None
     category_name = models.CharField(max_length=25, unique=True)
     subscribers = models.ManyToManyField(User, related_name='categories')
 
@@ -33,6 +34,8 @@ class Category(models.Model):
 
 
 class Post(models.Model):
+    DoesNotExist = None
+    objects = None
     article = 'AR'
     news = 'NW'
     SELECT_POST = [(article, 'статья'), (news, 'новость')]
@@ -43,6 +46,10 @@ class Post(models.Model):
     post_title = models.CharField(max_length=255)
     post_text = models.TextField()
     post_rating = models.IntegerField(default=0)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.id = None
 
     def like(self):
         self.post_rating += 1
@@ -74,6 +81,7 @@ class PostCategory(models.Model):
 
 
 class Comment(models.Model):
+    objects = None
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment_text = models.CharField(max_length=255)
