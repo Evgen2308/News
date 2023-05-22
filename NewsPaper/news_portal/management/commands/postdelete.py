@@ -1,5 +1,4 @@
-from django.core.management.base import BaseCommand
-
+from django.core.management.base import BaseCommand, CommandError
 from NewsPaper.news_portal.models import Post, Category
 
 

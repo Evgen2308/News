@@ -18,7 +18,6 @@ from django.urls import path, include
 
 from news_portal import views
 
-
 urlpatterns = [
     path('home/', views.home),
     path('admin/', admin.site.urls),
@@ -26,4 +25,5 @@ urlpatterns = [
     path('news/', include('news_portal.urls')),
     path('accounts/', include('allauth.urls')),
     path('', include('accounts.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]

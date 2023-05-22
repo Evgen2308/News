@@ -5,6 +5,8 @@ from django.db.models.functions import Coalesce
 from django.urls import reverse
 
 from django.core.cache import cache
+from django.utils.translation import gettext as _
+from django.utils.translation import pgettext_lazy
 
 
 class Author(models.Model):
@@ -25,8 +27,7 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-    objects = None
-    category_name = models.CharField(max_length=25, unique=True)
+    category_name = models.CharField(max_length=25, help_text=_('category name'), unique=True)
     subscribers = models.ManyToManyField(User, related_name='categories')
 
     def __str__(self):
@@ -34,8 +35,6 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    DoesNotExist = None
-    objects = None
     article = 'AR'
     news = 'NW'
     SELECT_POST = [(article, 'статья'), (news, 'новость')]
@@ -46,10 +45,6 @@ class Post(models.Model):
     post_title = models.CharField(max_length=255)
     post_text = models.TextField()
     post_rating = models.IntegerField(default=0)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
-        self.id = None
 
     def like(self):
         self.post_rating += 1
@@ -81,7 +76,6 @@ class PostCategory(models.Model):
 
 
 class Comment(models.Model):
-    objects = None
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment_text = models.CharField(max_length=255)
@@ -98,3 +92,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.user} ({self.comment_text[:30]}...)'
+
+class MyModel(models.Model):
+    name = models.CharField(max_length=100)
+    kind = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        related_name='kinds',
+        verbose_name=pgettext_lazy('help text for MyModel model', 'This is the help text'),
+    )

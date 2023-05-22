@@ -1,92 +1,639 @@
-2023-05-16 15:03:19,390 ERROR Internal Server Error: /accounts/signup/ C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\log.py (<class 'django.contrib.auth.models.Group.DoesNotExist'>, DoesNotExist('Group matching query does not exist.'), <traceback object at 0x0000025CD533C0C0>)
+2023-05-19 13:52:40,603 ERROR Internal Server Error: /accounts/login/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.urls.exceptions.NoReverseMatch'>, NoReverseMatch("Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name."), <traceback object at 0x0000016D92927F80>)
 Traceback (most recent call last):
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
     response = get_response(request)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name.
+2023-05-19 13:52:42,816 ERROR "GET /accounts/login/?next=/ HTTP/1.1" 500 170517 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-19 13:53:02,735 ERROR Internal Server Error: /accounts/login/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.urls.exceptions.NoReverseMatch'>, NoReverseMatch("Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name."), <traceback object at 0x0000016D92AAE240>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name.
+2023-05-19 13:53:04,020 ERROR "GET /accounts/login/?next=/ HTTP/1.1" 500 170517 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-19 13:53:18,544 ERROR Internal Server Error: /home/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.urls.exceptions.NoReverseMatch'>, NoReverseMatch("Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name."), <traceback object at 0x0000016D92956C80>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 134, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\User\PycharmProjects\News-a5dcd259357594846ec4573ce9b69296efe9119f\NewsPaper\news_portal\views.py", line 19, in home
+    return render(request, 'home.html')
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name.
+2023-05-19 13:53:19,631 ERROR "GET /home/ HTTP/1.1" 500 148064 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-19 13:57:14,830 ERROR Internal Server Error: /accounts/login/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.urls.exceptions.NoReverseMatch'>, NoReverseMatch("Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name."), <traceback object at 0x00000233C4DF0C00>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name.
+2023-05-19 13:57:16,956 ERROR "GET /accounts/login/?next=/ HTTP/1.1" 500 170269 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-19 13:57:37,905 ERROR Internal Server Error: /accounts/login/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.urls.exceptions.NoReverseMatch'>, NoReverseMatch("Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name."), <traceback object at 0x00000233C4B9D9C0>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name.
+2023-05-19 13:57:38,990 ERROR "GET /accounts/login/?next=/ HTTP/1.1" 500 170269 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-19 13:58:04,499 ERROR Internal Server Error: /news/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.urls.exceptions.NoReverseMatch'>, NoReverseMatch("Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name."), <traceback object at 0x00000233C4B96B40>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name.
+2023-05-19 13:58:05,742 ERROR "GET /news/ HTTP/1.1" 500 145233 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-19 16:20:14,268 ERROR Internal Server Error: /news/search/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('post_search.html, news_portal/post_list.html'), <traceback object at 0x0000015BDD40AB80>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: post_search.html, news_portal/post_list.html
+2023-05-19 16:20:15,967 ERROR Internal Server Error: /news/search/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('post_search.html, news_portal/post_list.html'), <traceback object at 0x0000015BDD738100>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: post_search.html, news_portal/post_list.html
+2023-05-19 16:20:17,403 ERROR "GET /news/search/ HTTP/1.1" 500 85237 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-22 14:19:28,259 ERROR Internal Server Error: /accounts/google/login/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'allauth.socialaccount.models.SocialApp.DoesNotExist'>, DoesNotExist('SocialApp matching query does not exist.'), <traceback object at 0x00000207B0FD22C0>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 81, in view
     return self.dispatch(request, *args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\base\mixins.py", line 19, in dispatch
+    return self.login(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 109, in login
+    app = provider.get_app(self.request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\base\provider.py", line 30, in get_app
+    return adapter.get_app(request, self.id, config=config)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\adapter.py", line 203, in get_app
+    app = SocialApp.objects.get_current(provider, request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\models.py", line 31, in get_current
+    app = self.get(sites__id=site.id, provider=provider)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 650, in get
+    raise self.model.DoesNotExist(
+allauth.socialaccount.models.SocialApp.DoesNotExist: SocialApp matching query does not exist.
+2023-05-22 14:19:29,523 ERROR Internal Server Error: /accounts/google/login/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'allauth.socialaccount.models.SocialApp.DoesNotExist'>, DoesNotExist('SocialApp matching query does not exist.'), <traceback object at 0x00000207B0D67480>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 81, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\base\mixins.py", line 19, in dispatch
+    return self.login(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 109, in login
+    app = provider.get_app(self.request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\base\provider.py", line 30, in get_app
+    return adapter.get_app(request, self.id, config=config)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\adapter.py", line 203, in get_app
+    app = SocialApp.objects.get_current(provider, request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\models.py", line 31, in get_current
+    app = self.get(sites__id=site.id, provider=provider)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 650, in get
+    raise self.model.DoesNotExist(
+allauth.socialaccount.models.SocialApp.DoesNotExist: SocialApp matching query does not exist.
+2023-05-22 14:19:30,793 ERROR "POST /accounts/google/login/?process=login&next=%2Fnews%2Fcreate%2F HTTP/1.1" 500 101148 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-22 14:19:42,948 ERROR Internal Server Error: /accounts/google/login/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'allauth.socialaccount.models.SocialApp.DoesNotExist'>, DoesNotExist('SocialApp matching query does not exist.'), <traceback object at 0x00000207B11D91C0>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 81, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\base\mixins.py", line 19, in dispatch
+    return self.login(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 109, in login
+    app = provider.get_app(self.request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\providers\base\provider.py", line 30, in get_app
+    return adapter.get_app(request, self.id, config=config)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\adapter.py", line 203, in get_app
+    app = SocialApp.objects.get_current(provider, request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\socialaccount\models.py", line 31, in get_current
+    app = self.get(sites__id=site.id, provider=provider)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 650, in get
+    raise self.model.DoesNotExist(
+allauth.socialaccount.models.SocialApp.DoesNotExist: SocialApp matching query does not exist.
+2023-05-22 14:19:44,369 ERROR "POST /accounts/google/login/?process=login&next=%2Fnews%2Fcreate%2F HTTP/1.1" 500 101148 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-22 14:21:24,168 ERROR Internal Server Error: /accounts/signup/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.contrib.auth.models.Group.DoesNotExist'>, DoesNotExist('Group matching query does not exist.'), <traceback object at 0x00000207B23EE0C0>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
     return bound_method(*args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\decorators.py", line 20, in wrap
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\decorators.py", line 20, in wrap
     resp = function(request, *args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
     return bound_method(*args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\views\decorators\debug.py", line 92, in sensitive_post_parameters_wrapper
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\decorators\debug.py", line 92, in sensitive_post_parameters_wrapper
     return view(request, *args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\account\views.py", line 234, in dispatch
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\account\views.py", line 234, in dispatch
     return super(SignupView, self).dispatch(request, *args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\account\views.py", line 77, in dispatch
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\account\views.py", line 77, in dispatch
     response = super(RedirectAuthenticatedUserMixin, self).dispatch(
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\account\views.py", line 207, in dispatch
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\account\views.py", line 207, in dispatch
     return super(CloseableSignupMixin, self).dispatch(request, *args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
     return handler(request, *args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\account\views.py", line 105, in post
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\account\views.py", line 105, in post
     response = self.form_valid(form)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\allauth\account\views.py", line 248, in form_valid
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\allauth\account\views.py", line 248, in form_valid
     self.user = form.save(self.request)
-  File "C:\Users\User\PycharmProjects\News_Portal\NewsPaper\accounts\models.py", line 25, in save
+  File "C:\Users\User\PycharmProjects\News-a5dcd259357594846ec4573ce9b69296efe9119f\NewsPaper\accounts\models.py", line 25, in save
     common_group = Group.objects.get(name='common')
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
     return getattr(self.get_queryset(), name)(*args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\query.py", line 650, in get
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 650, in get
     raise self.model.DoesNotExist(
 django.contrib.auth.models.Group.DoesNotExist: Group matching query does not exist.
-2023-05-16 15:03:20,631 ERROR "POST /accounts/signup/ HTTP/1.1" 500 130365 C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\servers\basehttp.py None
-2023-05-16 15:05:45,049 ERROR Internal Server Error: /upgrade/ C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\log.py (<class 'django.contrib.auth.models.Group.DoesNotExist'>, DoesNotExist('Group matching query does not exist.'), <traceback object at 0x0000025CD4FACE00>)
+2023-05-22 14:21:25,277 ERROR "POST /accounts/signup/ HTTP/1.1" 500 127897 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-22 14:21:36,280 ERROR Internal Server Error: /news/search/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('post_search.html, news_portal/post_list.html'), <traceback object at 0x00000207B242EE80>)
 Traceback (most recent call last):
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
     response = get_response(request)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: post_search.html, news_portal/post_list.html
+2023-05-22 14:21:37,503 ERROR "GET /news/search/ HTTP/1.1" 500 85759 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-22 14:24:42,638 ERROR Internal Server Error: /admin/news_portal/post/add/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.db.utils.IntegrityError'>, IntegrityError('NOT NULL constraint failed: news_portal_post.author_id'), <traceback object at 0x00000207B10EB740>)
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: news_portal_post.author_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapped_view
-    return view_func(request, *args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\NewsPaper\accounts\views.py", line 28, in upgrade_me
-    authors_group = Group.objects.get(name='authors')
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 686, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 134, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\decorators\cache.py", line 62, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1891, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 134, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1751, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1803, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1226, in save_model
+    obj.save()
+  File "C:\Users\User\PycharmProjects\News-a5dcd259357594846ec4573ce9b69296efe9119f\NewsPaper\news_portal\models.py", line 69, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 812, in save
+    self.save_base(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 863, in save_base
+    updated = self._save_table(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 1006, in _save_table
+    results = self._do_insert(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 1047, in _do_insert
+    return manager._insert(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
     return getattr(self.get_queryset(), name)(*args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\query.py", line 650, in get
-    raise self.model.DoesNotExist(
-django.contrib.auth.models.Group.DoesNotExist: Group matching query does not exist.
-2023-05-16 15:05:46,337 ERROR "GET /upgrade/ HTTP/1.1" 500 83996 C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\servers\basehttp.py None
-2023-05-17 15:17:26,095 ERROR Internal Server Error: /upgrade/ C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\log.py (<class 'django.contrib.auth.models.Group.DoesNotExist'>, DoesNotExist('Group matching query does not exist.'), <traceback object at 0x00000241D28A3100>)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1791, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\compiler.py", line 1660, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: news_portal_post.author_id
+2023-05-22 14:24:43,658 ERROR "POST /admin/news_portal/post/add/ HTTP/1.1" 500 200498 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-22 14:24:49,285 ERROR Internal Server Error: /admin/news_portal/post/add/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.db.utils.IntegrityError'>, IntegrityError('NOT NULL constraint failed: news_portal_post.author_id'), <traceback object at 0x00000207B1033600>)
 Traceback (most recent call last):
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: news_portal_post.author_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
     response = get_response(request)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapped_view
-    return view_func(request, *args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\NewsPaper\accounts\views.py", line 28, in upgrade_me
-    authors_group = Group.objects.get(name='authors')
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 686, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 134, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\decorators\cache.py", line 62, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1891, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 134, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1751, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1803, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1226, in save_model
+    obj.save()
+  File "C:\Users\User\PycharmProjects\News-a5dcd259357594846ec4573ce9b69296efe9119f\NewsPaper\news_portal\models.py", line 69, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 812, in save
+    self.save_base(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 863, in save_base
+    updated = self._save_table(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 1006, in _save_table
+    results = self._do_insert(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 1047, in _do_insert
+    return manager._insert(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
     return getattr(self.get_queryset(), name)(*args, **kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\db\models\query.py", line 650, in get
-    raise self.model.DoesNotExist(
-django.contrib.auth.models.Group.DoesNotExist: Group matching query does not exist.
-2023-05-17 15:17:28,219 ERROR "GET /upgrade/ HTTP/1.1" 500 80236 C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\servers\basehttp.py None
-2023-05-17 15:17:49,387 ERROR Internal Server Error: /news/search/ C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\log.py (<class 'TypeError'>, TypeError('__init__() takes 1 positional argument but 2 were given'), <traceback object at 0x00000241D28C72C0>)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1791, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\compiler.py", line 1660, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: news_portal_post.author_id
+2023-05-22 14:24:50,579 ERROR "POST /admin/news_portal/post/add/ HTTP/1.1" 500 200441 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None
+2023-05-22 14:25:02,169 ERROR Internal Server Error: /admin/news_portal/post/add/ C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\log.py (<class 'django.db.utils.IntegrityError'>, IntegrityError('NOT NULL constraint failed: news_portal_post.author_id'), <traceback object at 0x00000207B10D3600>)
 Traceback (most recent call last):
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
-    response = get_response(request)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\views\generic\base.py", line 96, in view
-    self = cls(**initkwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\NewsPaper\news_portal\views.py", line 58, in __init__
-    super().__init__(kwargs)
-TypeError: __init__() takes 1 positional argument but 2 were given
-2023-05-17 15:17:50,510 ERROR "GET /news/search/ HTTP/1.1" 500 71785 C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\servers\basehttp.py None
-2023-05-17 16:17:18,944 ERROR Internal Server Error: /news/search/ C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\utils\log.py (<class 'TypeError'>, TypeError('__init__() takes 1 positional argument but 2 were given'), <traceback object at 0x00000148DCA9F180>)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: news_portal_post.author_id
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
     response = get_response(request)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\views\generic\base.py", line 96, in view
-    self = cls(**initkwargs)
-  File "C:\Users\User\PycharmProjects\News_Portal\NewsPaper\news_portal\views.py", line 58, in __init__
-    super().__init__(kwargs)
-TypeError: __init__() takes 1 positional argument but 2 were given
-2023-05-17 16:17:20,799 ERROR "GET /news/search/ HTTP/1.1" 500 71785 C:\Users\User\PycharmProjects\News_Portal\venv\lib\site-packages\django\core\servers\basehttp.py None
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 686, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 134, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\decorators\cache.py", line 62, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1891, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\decorators.py", line 134, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1751, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1803, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\options.py", line 1226, in save_model
+    obj.save()
+  File "C:\Users\User\PycharmProjects\News-a5dcd259357594846ec4573ce9b69296efe9119f\NewsPaper\news_portal\models.py", line 69, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 812, in save
+    self.save_base(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 863, in save_base
+    updated = self._save_table(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 1006, in _save_table
+    results = self._do_insert(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 1047, in _do_insert
+    return manager._insert(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1791, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\compiler.py", line 1660, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: news_portal_post.author_id
+2023-05-22 14:25:03,301 ERROR "POST /admin/news_portal/post/add/ HTTP/1.1" 500 200493 C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\servers\basehttp.py None

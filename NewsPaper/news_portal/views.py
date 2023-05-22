@@ -14,7 +14,6 @@ from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 from django.utils.translation import gettext as _
 
-
 @cache_page(100)
 def home(request):
     return render(request, 'home.html')
@@ -47,16 +46,13 @@ class PostDetail(DetailView):
         return obj
 
 
+
 class PostSearch(ListView):
     model = Post
     template_name = 'post_search.html'
     context_object_name = 'posts'
     ordering = '-date_creation'
     paginate_by = 7
-
-    def __init__(self, **kwargs):
-        super().__init__(kwargs)
-        self.filterset = None
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -202,12 +198,8 @@ class PostTypeListView(ListView):
             return 'AR', 'статей'
 
 
-class Index(View):
-    def get(self, request):
-        string = _('Hello world')
-
-        context = {
-            'string': string
-        }
-
-        return HttpResponse(render(request, 'Index.html', context))
+# class Index(View):
+#     def get(self, request):
+#         string = _('Hello world')
+#
+#         return HttpResponse(string)

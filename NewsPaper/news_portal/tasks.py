@@ -4,6 +4,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from .models import Post, Category
 import datetime
+from django.utils.translation import gettext as _
 
 
 @shared_task
@@ -53,7 +54,7 @@ def weekly_send_email_task():
 
     )
     msg = EmailMultiAlternatives(
-        subject='Публикации за неделю',
+        subject=_('Articles for the week'),
         body='',
         from_email=settings.DEFAULT_FROM_EMAIL,
         to=subscribers,

@@ -1,7 +1,7 @@
 from django_filters import FilterSet, DateFilter, CharFilter, ModelChoiceFilter
 from .models import Author
 from django import forms
-
+from django.utils.translation import gettext as _
 
 
 class PostFilter(FilterSet):
@@ -20,6 +20,6 @@ class PostFilter(FilterSet):
     post_date = DateFilter(
         field_name='date_creation',
         widget=forms.DateInput(attrs={'type': 'date'}),
-        label='Дата',
+        label=_('search by date starting from'),
         lookup_expr='date__gte'
     )

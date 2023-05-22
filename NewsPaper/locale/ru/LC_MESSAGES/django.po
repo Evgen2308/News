@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-17 14:59+0200\n"
+"POT-Creation-Date: 2023-05-19 16:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,9 +16,191 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
-#: .\news_portal\views.py:207
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\news_portal\filters.py:23
+msgid "search by date starting from"
+msgstr "поиск по дате начиная с"
+
+#: .\news_portal\models.py:30
+msgid "category name"
+msgstr "название категории"
+
+#: .\news_portal\models.py:102
+msgctxt "help text for MyModel model"
+msgid "This is the help text"
+msgstr "Это текст помощи"
+
+#: .\news_portal\tasks.py:57
+msgid "Articles for the week"
+msgstr "Статьи за неделю"
+
+#: .\news_portal\views.py:203
 msgid "Hello world"
 msgstr "Привет мир"
+
+#: .\templates\authors_list.html:14
+msgid "All publications of the author"
+msgstr "Все публикации автора"
+
+#: .\templates\authors_list.html:20 .\templates\category_list.html:26
+msgid "title"
+msgstr "заголовок"
+
+#: .\templates\authors_list.html:21 .\templates\category_list.html:27
+msgid "publication date"
+msgstr "дата публикации"
+
+#: .\templates\authors_list.html:22 .\templates\category_list.html:28
+msgid "author post"
+msgstr "автор поста"
+
+#: .\templates\authors_list.html:23 .\templates\category_list.html:29
+msgid "type post"
+msgstr "тип поста"
+
+#: .\templates\authors_list.html:24 .\templates\category_list.html:30
+#: .\templates\news.html:32
+msgid "categories"
+msgstr "категории"
+
+#: .\templates\authors_list.html:25 .\templates\category_list.html:31
+#: .\templates\news.html:34
+msgid "text"
+msgstr "текст"
+
+#: .\templates\authors_list.html:60
+msgid "There are no publications!"
+msgstr "Публикаций нет!"
+
+#: .\templates\category_list.html:13
+msgid "All news"
+msgstr "Все новости"
+
+#: .\templates\category_list.html:15
+msgid "Subscribe and you will be notified of new posts in the category"
+msgstr "Подпишитесь и вы будете получать уведомления о новых публикациях в рубрике"
+
+#: .\templates\category_list.html:16
+msgid "subscribe"
+msgstr "подписчики"
+
+#: .\templates\category_list.html:19
+msgid ""
+"You are subscribed to the mailing list of notifications about new "
+"publications in the category"
+msgstr ""
+"Вы подписаны на рассылку уведомлений о новых "
+"публикации в категории"
+
+#: .\templates\category_list.html:20
+msgid "unsubscribe"
+msgstr "отписаться"
+
+#: .\templates\category_list.html:66
+msgid "There is no news!"
+msgstr "Новостей нет!"
+
+#: .\templates\daily_post.html:19
+msgid "Publications per week"
+msgstr "Публикаций в неделю"
+
+#: .\templates\daily_post.html:22
+msgid "Hello!"
+msgstr "Здравствуйте!"
+
+#: .\templates\daily_post.html:24
+msgid "Sent you a list of publications,"
+msgstr "Отправил вам список публикаций,"
+
+#: .\templates\daily_post.html:26
+msgid "added in the last week in categories,"
+msgstr "добавлено за последнюю неделю в категории,"
+
+#: .\templates\daily_post.html:28
+msgid "to which you are subscribed:"
+msgstr "на которые вы подписаны:"
+
+#: .\templates\home.html:5
+msgid "Home page!"
+msgstr "Домашняя страница"
+
+#: .\templates\home.html:14
+#, fuzzy
+#| msgid "Welcome to the news portal!"
+msgid "Welcome to the news portal!"
+msgstr "Вас приветствует новостной портал!"
+
+#: .\templates\news.html:23
+msgid "All news "
+msgstr "Все новости"
+
+#: .\templates\news.html:25
+msgid "We will inform you about more recent news a little later!"
+msgstr "О более свежих новостях сообщим чуть позже!"
+
+#: .\templates\news.html:31
+msgid "heading"
+msgstr "заголовок"
+
+#: .\templates\news.html:33
+msgid "date of publication"
+msgstr "дата публикации"
+
+#: .\templates\news.html:39
+msgid "Edit"
+msgstr "редактировать"
+
+#: .\templates\news.html:41
+msgid "Remove"
+msgstr "Удалить"
+
+#: .\templates\news.html:62
+msgid "the first"
+msgstr "первая"
+
+#: .\templates\news.html:67
+msgid "page"
+msgstr "страница"
+
+#: .\templates\news.html:67
+msgid "from"
+msgstr "из"
+
+#: .\templates\news.html:72
+msgid "past"
+msgstr "зпролшлое"
+
+#: .\templates\news.html:78
+msgid "become an author!"
+msgstr "стать автором!"
+
+#: .\templates\news.html:80
+msgid "you are already an author"
+msgstr "ты уже автор"
+
+#: .\templates\news.html:84
+msgid "there is no news!"
+msgstr "нет новостей!"
+
+#: .\templates\post_delete.html:15
+msgid "Confirm deletion"
+msgstr "подтвердить удаление"
+
+#: .\templates\sign\login.html:8
+msgid "Sign in"
+msgstr "Войти"
+
+#: .\templates\sign\login.html:24
+msgid "registration"
+msgstr "регистрация"
+
+#: .\templates\sign\logout.html:11
+msgid "You are logged out"
+msgstr "Вы вышли"
+
+#: .\templates\sign\signup.html:8
+msgid "sign in"
+msgstr "войти"
