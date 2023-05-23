@@ -15,15 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.views.generic import TemplateView
+from rest_framework import routers
 from news_portal import views
 
+
+routers = routers.DefaultRouter()
+routers.register(r'author', views.AuthorlViewset)
+routers.register(r'post', views.PostViewset)
+
 urlpatterns = [
-    path('home/', views.home),
+    path('i18n/', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
-    path('news/', include('news_portal.urls')),
+    path('news/', include('news.urls')),
+    path('', include('protect.urls')),
     path('accounts/', include('allauth.urls')),
-    path('', include('accounts.urls')),
-    path('i18n/', include('django.conf.urls.i18n')),
+    path('swagger-ui/', TemplateView.as_view(
+       template_name='swagger-ui.html', extra_context={'schema_url': 'openapi-schema'}), name='swagger-ui'),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

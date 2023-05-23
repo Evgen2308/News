@@ -1,0 +1,70 @@
+{% extends 'flatpages/default.html' %}
+<!DOCTYPE html>
+{% load i18n %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Post {% endblock title %}</title>
+</head>
+
+{% load censor %}
+{% load custom_tags %}
+
+
+{% block content %}
+<body>
+<h1>{% trans 'All news' %} ({{ post_news.count}})</h1>
+<h3>{% current_time '%d %b %Y' %}</h3>
+<h3> {{ next_sale|default_if_none:"_('We will inform you about more recent news a little later!')" }}</h3>
+<br>
+<form action=""
+      method="get">
+    {{ filterset.form.as_p }}
+    <input type="submit"
+    value="{% trans 'to find' %}"/>
+</form>
+<hr>
+{% if post_news %}
+    <table>
+        <thead>
+        <tr>
+            <th>{% trans 'heading' %}</th>
+            <th>{% trans 'date of publication' %}</th>
+            <th>{% trans 'text' %}</th>
+        </tr>
+        {% for post in post_news %}
+        <tr>
+            <td><a href="{% url 'post_detail' post.id %}">{{ post.title|censor}}</a></td>
+            <td>{{ post.date_in|date:'d M Y'}}</td>
+            <td>{{ post.text|censor|truncatechars:20}}</td>
+        </tr>
+        {% endfor %}
+        </thead>
+    </table>
+
+    {% if post_news.has_other_pages %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if post_news.has_previous %}
+                <a href="?page=1">&laquo; {% trans 'the first' %}</a>
+                <a href="?page={{ post_news.previous_page_number }}">'<<<'</a>
+            {% endif %}
+
+            <span class="current-page">
+                {% trans 'Page' %} {{ post_news.number }} {% trans 'from' %} {{ post_news.paginator.num_pages }}.
+            </span>
+
+            {% if post_news.has_next %}
+                <a href="?page={{ post_news.next_page_number }}">'>>>'</a>
+                <a href="?page={{ post_news.paginator.num_pages }}">{% trans 'past'%} &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    {% endif %}
+
+{% else %}
+    <h2>{% trans 'there is no news!' %}</h2>
+{% endif %}
+{% endblock content %}
+</body>
+</html>

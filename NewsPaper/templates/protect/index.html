@@ -1,0 +1,22 @@
+{% extends 'flatpages/default.html' %}
+<!DOCTYPE html>
+{% load i18n %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+{% if is_not_author %}
+<button> <a href="{% url 'upgrade' %}">{% trans 'become an author!' %}</a> </button>
+{% else %}
+<h1>{% trans 'you are already an author' %}</h1>
+{% endif %}
+<h2>{% trans 'Authorized User Page' %} {{request.user.username}}</h2>
+<div> {% trans 'personal information for each user' %} </div>
+
+<button> <a href="news/logout/">{% trans 'Exit' %}</a> </button>
+{% endblock %}
+</body>
+</html>

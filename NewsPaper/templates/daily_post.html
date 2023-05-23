@@ -1,36 +1,16 @@
 <!DOCTYPE html>
 {% load i18n %}
 <html lang="en">
-
-{% load cache %}
-{% cache 60 menu sidebar %}
-{% endcache %}
-
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% trans 'notification' %}</title>
 </head>
 <body>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Публикации за неделю</title>
-</head>
-<body>
-<h2>Здравствуйте!
-    <br>
-    Прислали вам список публикаций,
-    <br>
-    добавленных за последнюю неделю в категориях,
-    <br>
-    на которые вы подписаны:</h2>
-<ul>
-    {% for post in posts %}
-    <li><a href="{{ link }}{{ post.get_absolute_url }}">{{ post.post_title }}</a></li>
-    {% endfor %}
-</ul>
+    <h2>{% trans 'hello! new articles for the last week' %}</h2>
+    <ul>
+        {% for post in posts %}
+            <li><a href="{{ link }}{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

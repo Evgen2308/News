@@ -22,9 +22,9 @@ if not os.path.exists(LOG_DIR):
 
 logger = logging.getLogger('NewsPaper.news.NewsPaper')
 
-# Создаем файл журнала ошибок
-# ERROR_LOG_FILE = os.path.join(LOG_DIR, 'errors.log')
-# open(ERROR_LOG_FILE, 'a').close()
+#Создаем файл журнала ошибок
+ERROR_LOG_FILE = os.path.join(LOG_DIR, 'errors.log')
+open(ERROR_LOG_FILE, 'a').close()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/

@@ -1,87 +1,75 @@
 {% extends 'flatpages/default.html' %}
+<!DOCTYPE html>
 {% load i18n %}
-{% load custom_filters %}
-{% block title %}
-Publications
-{% endblock title %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Post{% endblock title %}</title>
+</head>
 
-{% load cache %}
-{% cache 60 menu sidebar %}
-{% endcache %}
+{% load censor %}
+{% load custom_tags %}
 
 {% block content %}
-{% include 'input_output.html' %}
-<h1>Всего публикаций в категории "{{ category }}": {{ page_obj.paginator.count }}</h1>
-{% if is_not_subscriber %}
-<p class="text-center">Подпишитесь и вы будете получать уведомления о новых публикациях в категории "{{ category }}"<br>
-    <a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a></p>
-{% endif %}
-{% if is_subscriber %}
-<p class="text-center">Вы подписаны на рассылку уведомлений о новых публикациях в категории "{{ category }}"<br>
-    <a href="{% url 'unsubscribe' category.id %}" class="btn btn-secondary btn-sm">Описаться</a></p>
-{% endif %}
-{% if category_posts_list %}
-<table style="border: 1px solid #afabab;">
-    <tr style="border: 1px solid #afabab;">
-        <td style="border: 1px solid #afabab;">&nbsp; ID &nbsp;</td>
-        <td style="border: 1px solid #afabab;">Заголовок</td>
-        <td style="border: 1px solid #afabab;">Дата публикации</td>
-        <td style="border: 1px solid #afabab;">Автор публикации</td>
-        <td style="border: 1px solid #afabab;">Тип публикации</td>
-        <td style="border: 1px solid #afabab;">Категории</td>
-        <td style="border: 1px solid #afabab;">Текст</td>
-    </tr>
-    {% for post in category_posts_list %}
-    <tr style="border: 1px solid #afabab;">
-        <td style="border: 1px solid #afabab;">{{ post.pk }}</td>
-        <td style="border: 1px solid #afabab;"><a href="{% url 'post_detail' post.pk %}">
-            {{ post.post_title|censor }}</a>
-            <br>
-            {% if post.post_type == 'NW' %}
-            {% if post.author == request.user.author %}
-            <a href="{% url 'post_edit' post.id %}"><span style="color: brown; "><font size="2">редактировать</font></span></a>
-            &nbsp;&nbsp;
-            <a href="{% url 'post_delete' post.id %}"><span style="color: red; "><font size="2">удалить</font></span></a>
-            {% endif %}
-            {% else %}
-            {% if post.author == request.user.author %}
-            <a href="{% url 'articles_edit' post.id %}"><span style="color: brown; "><font size="2">редактировать</font></span></a>
-            &nbsp;&nbsp;
-            <a href="{% url 'articles_delete' post.id %}"><span style="color: red; "><font size="2">удалить</font></span></a>
-            {% endif %}
-            {% endif %}
+<body>
+<h1>{% trans 'All news' %} ({{ post_news.count}})</h1>
+<h3>{% current_time '%d %b %Y' %}</h3>
+<h3>{{ next_sale|default_if_none:"_('We will inform you about more recent news a little later!')" }}</h3>
+<hr>
+{% if category_news_list %}
+<tr>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                {% trans 'heading' %}
+            </th>
+            <th>
+                {% trans 'category' %}
+            </th>
+            <th>
+                {% trans 'date of publication' %}
+            </th>
+            <th>
+                {% trans 'text' %}
+            </th>
+        </tr>
+        {% for post in category_news_list %}
+        <tr>
+            <td>
+            <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a> <!-- ссылка на сам пост -->
         </td>
-        <td style="border: 1px solid #afabab;">{{ post.date_creation }}</td>
-        <td style="border: 1px solid #afabab;"><a href="{% url 'author_list' post.author.id %}">{{ post.author }}</a></td>
-        <td style="border: 1px solid #afabab;"><a href="{% url 'type_list' post.post_type %}">{{ post.get_post_type_display }}</a></td>
-        <td style="border: 1px solid #afabab;">
-            {% for category in post.post_category.all %}
-            <a href="{% url 'category_list' category.id %}">{{ category }}</a>
+            <td>
+            {% for category in post.category.all %}
+                <a href="{% url 'category_list' category.id %}">{{ category }}</a>
             {% endfor %}
+            </td>
+            <td>{{ post.date_in|date:'d M Y'}}</td>
+        <td><a href="{% url 'post_detail' post.id %}">{{ post.title|censor|truncatechars:20}}</a></td>
+
+        <td>
+                <p class="text-center"><a href="{% url 'post_edit' post.id %}"style="background-color:#ffffa1" ><u>{% trans 'Edit' %}</u></a></p> <!--ссылка на редактирование поста-->
+
+                <p class="text-center"><a href="{% url 'post_delete' post.id %}"style="color:red"><u>{% trans 'Remove' %}</u></a></p> <!-- добавим ссылку на удаление поста-->
         </td>
-        <td style="border: 1px solid #afabab;">{{ post.post_text|truncatewords:20|censor }}</td>
-    </tr>
-    {% endfor %}
-</table>
+        </tr>
+        {% endfor %}
+        </thead>
+    </table>
+{% if is_not_subscriber %}
+    <p class="text-center"><a href="{% url 'subscribe' category.id %}"style="background-color:green" class="btn btn-secondary btn-sm">{% trans 'subscribe' %}</a></p>
 {% else %}
-<h2>Публикаций нет!</h2>
+    <p class="text-center"><a href="{% url 'unsubscribe' category.id %}"style="background-color:red" class="btn btn-secondary btn-sm">{% trans 'unsubscribe' %}</a></p>
+    {% endif %}
+{% if is_not_author %}
+<button> <a href="{% url 'upgrade' %}">{% trans 'become an author!' %}</a> </button>
+{% else %}
+<h1>{% trans 'you are already an author' %}</h1>
 {% endif %}
-{% if page_obj.has_previous %}
-<a href="?page=1">1</a>
-{% if page_obj.previous_page_number != 1 %}
-...
-<a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+</tr>
+{% else %}
+    <h2>{% trans 'there is no news!' %}</h2>
 {% endif %}
-{% endif %}
-
-{{ page_obj.number }}
-
-{% if page_obj.has_next %}
-<a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-{% if paginator.num_pages != page_obj.next_page_number %}
-...
-<a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
-{% endif %}
-{% endif %}
-
 {% endblock content %}
+</body>
+</html>

@@ -1,73 +1,93 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
-from django.db.models.functions import Coalesce
-from django.urls import reverse
-
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
 from django.core.cache import cache
 from django.utils.translation import gettext as _
 from django.utils.translation import pgettext_lazy
 
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    author_rating = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.user.username
+    user_author = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_rating = models.IntegerField(default=0)
 
     def update_rating(self):
-        author_posts_rating = Post.objects.filter(author_id=self.pk).aggregate(
-            posts_rating_sum=Coalesce(Sum('post_rating') * 3, 0))
-        author_comments_rating = Comment.objects.filter(user_id=self.user).aggregate(
-            comments_rating_sum=Coalesce(Sum('comment_rating'), 0))
+        rating_posts_author = \
+            Post.objects.filter(author_post=self).aggregate(Sum('rating_news')).get('rating_news__sum') * 3
+        rating_comments_author = \
+            Comment.objects.filter(user_comment=self.user_author).aggregate(Sum('rating_comment')).\
+            get('rating_comment__sum')
+        rating_comments_posts = \
+            Comment.objects.filter(post_comment__author_post=self.id).aggregate(Sum('rating_comment')).\
+            get('rating_comment__sum')
 
-        self.author_rating = author_posts_rating['posts_rating_sum'] + author_comments_rating['comments_rating_sum']
+        self.user_rating = rating_posts_author + rating_comments_author + rating_comments_posts
+        print(self.user_rating)
         self.save()
+
+    def __str__(self):
+        return self.user_author.username
 
 
 class Category(models.Model):
-    category_name = models.CharField(max_length=25, help_text=_('category name'), unique=True)
-    subscribers = models.ManyToManyField(User, related_name='categories')
+    tehnika = 'TH'
+    nauka = 'NA'
+    sport = 'ST'
+    spase = 'SP'
+
+    TEMATIC = [
+        (tehnika, 'ТЕХНИКА'),
+        (nauka, 'НАУКА'),
+        (sport, 'СПОРТ'),
+        (spase, 'КОСМОС')
+    ]
+    tematic = models.CharField(max_length=2, choices=TEMATIC, unique=True)
+    subscribers = models.ManyToManyField(User, blank=True, related_name='categories')
+    name = models.CharField(max_length=100, help_text=_('category name'), default='')  # добавим переводящийся текст подсказку к полю
 
     def __str__(self):
-        return self.category_name
+        return self.get_tematic_display()
+
+
+post = 'PO'
+news = 'NE'
+POST = [
+    (post, 'ПОСТ'),
+    (news, 'НОВОСТЬ')
+]
 
 
 class Post(models.Model):
-    article = 'AR'
-    news = 'NW'
-    SELECT_POST = [(article, 'статья'), (news, 'новость')]
-    author = models.ForeignKey(Author, editable=False, on_delete=models.CASCADE)
-    post_type = models.CharField(max_length=2, choices=SELECT_POST, default=news)
-    date_creation = models.DateTimeField(auto_now_add=True)
-    post_category = models.ManyToManyField(Category, through='PostCategory')
-    post_title = models.CharField(max_length=255)
-    post_text = models.TextField()
-    post_rating = models.IntegerField(default=0)
+    author_post = models.ForeignKey(Author, on_delete=models.CASCADE)
+    post_news = models.CharField(max_length=2, choices=POST)
+    date_in = models.DateTimeField(auto_now_add=True)
+    category = models.ManyToManyField(Category, through='PostCategory')
+    title = models.CharField(max_length=50)
+    text = models.TextField()
+    rating_news = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
 
-    def like(self):
-        self.post_rating += 1
+    class Meta:
+        ordering = ['-date_in']
+
+    def like_post(self):
+        self.rating_news += 1
         self.save()
 
-    def dislike(self):
-        self.post_rating -= 1
+    def dislike_post(self):
+        self.rating_news -= 1
         self.save()
 
     def preview(self):
-        if len(self.post_text) > 124:
-            return f'{self.post_text[:124]}...'
-        return self.post_text
+        return self.text[0:124] + '...'
 
-    def __str__(self):
-        return f'{self.post_title}: {self.post_text}'
-
-    def get_absolute_url(self):
-        return reverse('post_detail', args=[str(self.id)])
+    def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с постом
+        return f'/news/{self.id}'
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        cache.delete(f'article-{self.pk}')
+        super().save(*args, **kwargs)  # сначала вызываем метод родителя, чтобы объект сохранился
+        cache.delete(f'post-{self.pk}')  # затем удаляем его из кэша, чтобы сбросить его
 
 
 class PostCategory(models.Model):
@@ -76,22 +96,35 @@ class PostCategory(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    comment_text = models.CharField(max_length=255)
-    date_creation = models.DateTimeField(auto_now_add=True)
-    comment_rating = models.IntegerField(default=0)
+    text_comment = models.TextField()
+    data_time_comment = models.DateTimeField(auto_now_add=True)
+    rating_comment = models.IntegerField(default=0)
+    post_comment = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user_comment = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def like(self):
-        self.comment_rating += 1
+    def like_comment(self):
+        self.rating_comment += 1
         self.save()
 
-    def dislike(self):
-        self.comment_rating -= 1
+    def dislike_comment(self):
+        self.rating_comment -= 1
         self.save()
 
-    def __str__(self):
-        return f'{self.user} ({self.comment_text[:30]}...)'
+
+class BaseRegisterForm(UserCreationForm):
+    email = forms.EmailField(label="Email")
+    first_name = forms.CharField(label="Имя")
+    last_name = forms.CharField(label="Фамилия")
+
+    class Meta:
+        model = User
+        fields = ("username",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "password1",
+                  "password2", )
+
 
 class MyModel(models.Model):
     name = models.CharField(max_length=100)

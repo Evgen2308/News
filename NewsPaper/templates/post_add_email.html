@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans 'notification' %}</title>
+</head>
+<body>
+    <h2>{% trans 'hello! new' %}  <a href="{{ link }}">{% trans 'post' %}</a>{% trans 'in your section' %}</h2>
+        <p>{{ text }}</p>
+</body>
+</html>

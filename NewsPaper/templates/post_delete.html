@@ -1,16 +1,26 @@
 {% extends 'flatpages/default.html' %}
+<!DOCTYPE html>
 {% load i18n %}
-{% load cache %}
-{% cache 60 menu sidebar %}
-{% endcache %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Onenews {% endblock title %}</title>
+    {% load censor %}
+    {% load custom_tags %}
 
+</head>
+<body>
 {% block content %}
-{% include 'input_output.html' %}
-<h1>Удаление публикации № {{ object.id }}</h1>
-<hr>
-<form action="" method="post">
-    {% csrf_token %}
-    <p>Удаляется {{ object.get_post_type_display }}: "{{ object.post_title }}"</p>
-    <input type="submit" value="Подтвердить удаление"/>
-</form>
+
+<h1>_('deleting a post')-{{post_delete.title}}</h1>
+    <hr>
+    <form action=""
+          method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit"
+        value="{% trans 'confirm' %}" />
+    </form>
 {% endblock content %}
+</body>
+</html>

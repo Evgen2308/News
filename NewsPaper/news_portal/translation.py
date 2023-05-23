@@ -1,4 +1,4 @@
-from .models import Category, MyModel
+from .models import Category
 from modeltranslation.translator import register, TranslationOptions
 # импортируем декоратор для перевода и класс настроек, от которого будем наследоваться
 
@@ -7,9 +7,9 @@ from modeltranslation.translator import register, TranslationOptions
 
 @register(Category)
 class CategoryTranslationOptions(TranslationOptions):
-    fields = ('')  # указываем, какие именно поля надо переводить в виде кортежа
+    fields = ('category_name',)  # указываем, какие именно поля надо переводить в виде кортежа
 
 
-@register(MyModel)
-class MyModelTranslationOptions(TranslationOptions):
-    fields = ('')
+# @register(MyModel)
+# class MyModelTranslationOptions(TranslationOptions):
+#     fields = ('')

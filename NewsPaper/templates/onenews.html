@@ -1,0 +1,53 @@
+{% extends 'flatpages/default.html' %}
+<!DOCTYPE html>
+{% load i18n %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Onenews {% endblock title %}</title>
+
+    {% load censor %}
+    {% load custom_tags %}
+    {% load cache %}
+
+    {% cache 300 one_news %}
+
+
+    {% block content %}
+    <h1>{{ onenews.title|censor }}</h1>
+    <hr>
+    {% if onenews %}
+        <table>
+            <td>
+            <a href="{% url 'post_edit' onenews.id %}"style="background-color:#ffffa1"><u>{% trans 'Edit' %}</u></a> <!--ссылка на редактирование поста-->
+            <a href="{% url 'post_delete' onenews.id %}"style="color:red"><u>{% trans 'Remove' %}</u></a> <!-- ссылка на удаление поста-->
+            </td>
+            <tr>
+                <td>{% trans 'heading' %}</td>
+                <td>{% trans 'categories' %}</td>
+                <td></td>
+                <td>{% trans 'date of publication' %}</td>
+                <td>{% trans 'content' %}</td>
+            </tr>
+            <tr>
+            <td>{{ onenews.title|censor}}</td>
+            <td>
+            {% for category in onenews.category.all %}
+                <a href="{% url 'category_list' category.id %}">{{ category }}</a>
+            {% endfor %}
+            </td>
+            <td></td>
+            <td>{{ onenews.date_in|date:'d M Y'}}</td>
+            <td>{{ onenews.text|censor|truncatechars:20}}</td>
+        </tr>
+        </table>
+    {% else %}
+        <h2>{% trans 'oops! she s not here!' %}</h2>
+    {% endif %}
+    {% endblock content %}
+    {% endcache %}
+</head>
+<body>
+
+</body>
+</html>

@@ -1,144 +1,179 @@
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+import pytz
 from django.urls import reverse_lazy
-from .filters import PostFilter
-from .forms import PostForm
-from .models import Post, Category, Author
-from .tasks import send_email_task
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from requests import request, Response
+from datetime import datetime, timedelta
 
-from django.views.decorators.cache import cache_page
+from django.http import HttpResponse
+from django.views import View
+
+from .models import Post, Category, BaseRegisterForm, Author, post, MyModel
+from .forms import PostForm
+from .filter import PostFilter
+from django.contrib.auth.models import User, Group
+from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.shortcuts import redirect, get_object_or_404, render
+from django.contrib.auth.decorators import login_required
+
+from .tasks import send_email_task
 from django.core.cache import cache
 from django.utils.translation import gettext as _
+from django.utils import timezone
+from django.utils.translation import activate, get_supported_language_variant, LANGUAGE_SESSION_KEY
+from rest_framework import viewsets, permissions, status
+from news_portal.serializers import AuthorSerializer, PostSerializer
+from news_portal.models import Author, Post
 
-@cache_page(100)
-def home(request):
-    return render(request, 'home.html')
 
 
-class PostsList(ListView):
+@login_required
+def upgrade_me(request):
+    Author.objects.create(user_author=request.user)
+    authors_group = Group.objects.get(name='authors')
+    if not request.user.groups.filter(name='authors').exists():
+        authors_group.user_set.add(request.user)
+    return redirect('/news/')
+
+
+class PostList(LoginRequiredMixin, ListView):
     model = Post
-    ordering = '-date_creation'
-    template_name = 'posts.html'
-    context_object_name = 'posts'
-    paginate_by = 7
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['next_sale'] = None
-        context['post_detail'] = Post
-        return context
-
-
-class PostDetail(DetailView):
-    model = Post
-    template_name = 'post.html'
-    context_object_name = 'post'
-
-    def get_object(self, *args, **kwargs):
-        obj = cache.get(f'article-{self.kwargs["pk"]}', None)
-        if not obj:
-            obj = super().get_object(queryset=self.queryset)
-            cache.set(f'article-{self.kwargs["pk"]}', obj)
-        return obj
-
-
-
-class PostSearch(ListView):
-    model = Post
-    template_name = 'post_search.html'
-    context_object_name = 'posts'
-    ordering = '-date_creation'
-    paginate_by = 7
+    ordering = ['-date_in']
+    template_name = 'news.html'
+    context_object_name = 'post_news'
+    paginate_by = 5
+    form_class = PostForm
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        return queryset.order_by('-date_in')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
+        context['categories'] = Category.objects.all()
+        context['form'] = self.form_class()  # создаем экземпляр формы, чтобы передать в контекст
+        context['is_not_author'] = not self.request.user.groups.filter(name='authors').exists()
+        context['current_time'] = timezone.now()
+        context['timezones'] = pytz.common_timezones
+
+        return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('post_list')
+
+
+class PostDetail(LoginRequiredMixin, DetailView):
+    model = Post
+    template_name = 'onenews.html'
+    context_object_name = 'onenews'
+    queryset = Post.objects.all()
+
+    def get_object(self, *args, **kwargs):  # переопределяем метод получения объекта
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+        # кэш очень похож на словарь, и метод get действует так же. Он забирает значение по ключу, если его нет, то забирает None.
+        # если объекта нет в кэше, то получаем его и записываем в кэш
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'post-{self.kwargs["pk"]}', obj)
+
+        return obj
+
+
+class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):   # создание поста
+    permission_required = 'news.add_post'
+    template_name = 'post_add.html'
+    form_class = PostForm
+    model = post
+    success_url = reverse_lazy('post_add')
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.save()
+        send_email_task.delay(post.pk)
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.form_class()
+        context['current_time'] = timezone.now()
+        context['timezones'] = pytz.common_timezones
+        return context
+
+    def post(self, request, *args, **kwargs):
+        request.session['django_timezone'] = request.POST.get('timezone', 'UTC')
+        return super().post(request, *args, **kwargs)
+
+
+class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):   # редактирование поста
+    permission_required = 'news.change_post'
+    template_name = 'post_edit.html'
+    form_class = PostForm
+
+    # метод get_object мы используем вместо queryset, чтобы получить информацию об объекте редактирования
+    def get_object(self, **kwargs):
+        id = self.kwargs.get('pk')
+        return Post.objects.get(pk=id)
+
+    def post(self, request, **kwargs):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('post_edit')
+
+# дженерик для удаления поста
+
+class PostDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    permission_required = 'news.delete_post'
+    model = Post
+    template_name = 'post_delete.html'
+    queryset = Post.objects.all()
+    success_url = '/news/'
+    context_object_name = 'post_delete'
+
+
+class PostSearch(ListView):   #поиск поста
+    model = Post
+    template_name = 'post_search.html'
+    context_object_name = 'post_news'
+    paginate_by = 5
+
+    def get_queryset(self):  # получаем обычный запрос
+        queryset = super().get_queryset()  # используем наш класс фильтрации
         self.filterset = PostFilter(self.request.GET, queryset)
         return self.filterset.qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filterset'] = self.filterset
-        context['next_sale'] = None
+        context['current_time'] = timezone.now()
+        context['timezones'] = pytz.common_timezones
         return context
 
-
-class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-    form_class = PostForm
-    model = Post
-    template_name = 'post_create.html'
-    permission_required = ('news.add_post',)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = self.get_type()
-        return context
-
-    def form_valid(self, form):
-        post = form.save(commit=False)
-        if self.request.method == 'POST':
-            path_create = self.request.META['PATH_INFO']
-            if path_create == '/news/create/':
-                post.post_type = 'NW'
-            elif path_create == '/news/articles/create/':
-                post.post_type = 'AR'
-            form.instance.author = self.request.user.author
-        post.save()
-        send_email_task.delay(post.pk)
-        return super().form_valid(form)
-
-    def get_type(self):
-        path_type = self.request.META['PATH_INFO']
-        if path_type == '/news/create/':
-            return 'новость'
-        elif path_type == '/news/articles/create/':
-            return 'статью'
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('post_search')
 
 
-class PostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    form_class = PostForm
-    model = Post
-    template_name = 'post_edit.html'
-    permission_required = ('news.change_post',)
-
-    def form_valid(self, form):
-        post = form.save(commit=False)
-        if self.request.method == 'POST':
-            path_edit = self.request.META['PATH_INFO']
-            if path_edit == f'/news/{post.pk}/edit/' and post.post_type != 'NW':
-                return redirect(self.request.META.get('HTTP_REFERER'))
-            elif path_edit == f'/news/articles/{post.pk}/edit/' and post.post_type != 'AR':
-                return redirect(self.request.META.get('HTTP_REFERER'))
-        post.save()
-        return super().form_valid(form)
-
-
-class PostDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
-    model = Post
-    template_name = 'post_delete.html'
-    success_url = reverse_lazy('post_list')
-    permission_required = ('news.delete_post',)
+class BaseRegisterView(CreateView):
+    model = User
+    form_class = BaseRegisterForm
+    success_url = '/'
 
 
 class CategoryListView(ListView):
     model = Post
     template_name = 'category_list.html'
-    context_object_name = 'category_posts_list'
-    paginate_by = 10
+    context_object_name = 'category_news_list'
 
     def get_queryset(self):
-        self.post_category = get_object_or_404(Category, id=self.kwargs['pk'])
-        queryset = Post.objects.filter(post_category=self.post_category).order_by('-date_creation')
+        self.category = get_object_or_404(Category, id=self.kwargs['pk'])
+        queryset = Post.objects.filter(category=self.category).order_by('-date_in')
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['is_not_subscriber'] = self.request.user not in self.post_category.subscribers.all()
-        context['is_subscriber'] = self.request.user in self.post_category.subscribers.all()
-        context['category'] = self.post_category
+        context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
+        context['category'] = self.category
         return context
 
 
@@ -147,7 +182,8 @@ def subscribe(request, pk):
     user = request.user
     category = Category.objects.get(id=pk)
     category.subscribers.add(user)
-    return redirect(f'/news/categories/{category.pk}')
+    message = _('you have subscribed to the category: ')
+    return render(request, 'subscribe.html', {'category': category, 'message': message})
 
 
 @login_required
@@ -155,51 +191,24 @@ def unsubscribe(request, pk):
     user = request.user
     category = Category.objects.get(id=pk)
     category.subscribers.remove(user)
-    return redirect(f'/news/categories/{category.pk}')
+    message = _('unsubscribe from a category: ')
+    return render(request, 'subscribe.html', {'category': category, 'message': message})
 
 
-class AuthorsListView(ListView):
-    model = Post
-    template_name = 'authors_list.html'
-    context_object_name = 'authors_post_list'
-    paginate_by = 10
+class AuthorlViewset(viewsets.ModelViewSet):
+   queryset = Author.objects.all()
+   serializer_class = AuthorSerializer
 
-    def get_queryset(self):
-        self.author = get_object_or_404(Author, id=self.kwargs['pk'])
-        queryset = Post.objects.filter(author=self.author).order_by('-date_creation')
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['author'] = self.author
-        return context
+   def list(self, request, format=None):
+       return Response([])
 
 
-class PostTypeListView(ListView):
-    model = Post
-    template_name = 'post_type.html'
-    context_object_name = 'post_type_list'
-    paginate_by = 10
+class PostViewset(viewsets.ModelViewSet):
+   queryset = Post.objects.all().filter(is_active=True)
+   serializer_class = PostSerializer
 
-    def get_queryset(self):
-        queryset = Post.objects.filter(post_type=self.get_type()[0]).order_by('-date_creation')
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['post_type'] = self.get_type()[1]
-        return context
-
-    def get_type(self):
-        path_type = self.request.META['PATH_INFO']
-        if path_type == '/news/type/NW':
-            return 'NW', 'новостей'
-        elif path_type == '/news/type/AR':
-            return 'AR', 'статей'
-
-
-# class Index(View):
-#     def get(self, request):
-#         string = _('Hello world')
-#
-#         return HttpResponse(string)
+   def destroy(self, request, pk, format=None):
+       instance = self.get_object()
+       instance.is_active = False
+       instance.save()
+       return Response(status=status.HTTP_204_NO_CONTENT)

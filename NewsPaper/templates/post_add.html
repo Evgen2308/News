@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 {% extends 'flatpages/default.html' %}
+
 {% load i18n %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} Onenews {% endblock title %}</title>
-
     {% load censor %}
     {% load custom_tags %}
 
 
-{% block content %}
-
-<h1>{% trans 'post changes' %}</h1>
+    {% block content %}
+    <h1>{% trans 'creating a post' %}</h1>
     <hr>
-    <form action=""
-          method="post">
+    <form action=""method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit"
-        value="{% trans 'save' %}" />
+        value="{% trans 'save' %}"/>
     </form>
 {% endblock content %}
 </head>
-<body>
-
 </body>
 </html>
+<input type="hidden" name="timezone" value="{{ timezone }}">

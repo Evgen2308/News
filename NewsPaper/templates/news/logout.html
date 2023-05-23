@@ -1,0 +1,14 @@
+{% extends 'flatpages/default.html' %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+<h2>{% trans 'You are logged out' %}</h2>
+{% endblock %}
+</body>
+</html>
